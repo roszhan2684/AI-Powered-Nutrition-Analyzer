@@ -33,7 +33,7 @@ def launch():
         f.save(filepath)#saving the file
         
         img=image.load_img(filepath,target_size=(64,64)) #load and reshaping the image
-        x=image.img_to_array(img)#converting image to an array
+        x=image.img_to_array(img)/255.0#converting image to an array, rescaled to [0,1] like the training data
         x=np.expand_dims(x,axis=0)#changing the dimensions of the image
 
         pred=np.argmax(model.predict(x), axis=1)
